@@ -1,21 +1,22 @@
-export default function TodoItems({ todos, editId, editText, setEditId, setEditText, dispatch }) {
+export default function TodoItems({ todo, editId, editText, setEditId, setEditText, dispatch }) {
     return (
 
         <>
-            <li>
-                <input text="text" value={editText} onChange={(e) => setEditText(e.target.value)}>
+            <li style={{listStyle: "none"}}>
+            <input type="checkbox" checked={todo.completed} onChange={() => dispatch({ type: "Toggle", payload: todo.id })}/>
+                <input text="text" value={editText} onChange={(e) => setEditText(e.target.value)}/>
                 <button onClick={() => {
-                        dispatch({ type: "Edit", payload: { id: todos.id, task: editText } })
+                        dispatch({ type: "Edit", payload: { id: todo.id, task: editText } })
                         setEditId(null)
                         setEditText("")
                 }}>Save</button>
-                </input>
-                <input type="checkbox" checked={todos.completed} onChange={() => dispatch({ type: "Toggle", payload: todos.id })}></input>
+                
+               
                 <button onClick={() => {
-                    setEditId(todos.id)
-                    setEditText(todos.task)
+                    setEditId(todo.id)
+                    setEditText(todo.task)
                 }}>Edit</button>
-                <button onClick={() => dispatch({ type: "Delete", payload: todos.id })}>Delete</button>
+                <button onClick={() => dispatch({ type: "Delete", payload: todo.id })}>Delete</button>
             </li>
 
         </>

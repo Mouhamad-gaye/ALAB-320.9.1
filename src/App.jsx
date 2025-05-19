@@ -1,5 +1,7 @@
 import './App.css'
 import {useState, useReducer} from 'react'
+import TodoItems from './components/TodoItems';
+import AddInput from './components/AddInput';
 
 
 //Define the todoList
@@ -60,7 +62,13 @@ const [editText, setEditText] = useState("");
   return (
     <>
     <h1> Todo List</h1>
+    <AddInput newTodo={newTodo} setNewTodo={setNewTodo} dispatch={dispatch}/>
+    <ul>
+      
+    </ul>
     
+    <TodoItems key={todos.id}todo={todos} editId={editId} editText={editText} setEditId={setEditId} setEditText={setEditText} dispatch={dispatch}/>
+
       
     </>
   )
