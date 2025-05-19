@@ -1,5 +1,5 @@
 import './App.css'
-import {useState, useReducer} from 'react'
+import { useState, useReducer } from 'react'
 import TodoItems from './components/TodoItems';
 import AddInput from './components/AddInput';
 
@@ -30,30 +30,30 @@ const initialList = [
 
 //create reducer function
 function reducer(state, action) {
-  switch(action.type){
+  switch (action.type) {
     case "Toggle":
-      return state.map(todo => todo.id === action.payload ? {...todo, completed: !todo.completed} : todo);
+      return state.map(todo => todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo);
     case "Delete":
       return state.filter(todo => todo.id !== action.payload)
     case "Edit":
-      return state.map(todo => todo.id === action.payload.id ? {...todo, task: action.payload.task}: todo);
+      return state.map(todo => todo.id === action.payload.id ? { ...todo, task: action.payload.task } : todo);
     case "Add":
-      return [...state, {id: Date.now(), task: action.payload, completed: false}];
-    default: 
-    return state;
+      return [...state, { id: Date.now(), task: action.payload, completed: false }];
+    default:
+      return state;
   }
-    
+
 }
 
 function App() {
-//this is the useReducer initializer
-const [todos, dispatch] = useReducer(reducer, initialList)
-//this useState stores input text for adding new todos
-const [newTodo, setNewTodo] = useState("");
-//this use State tracks the id which can not be edited (null)
-const [editId, setEditId] = useState(null);
-//this useState holds temp text while editing
-const [editText, setEditText] = useState("");
+  //this is the useReducer initializer
+  const [todos, dispatch] = useReducer(reducer, initialList)
+  //this useState stores input text for adding new todos
+  const [newTodo, setNewTodo] = useState("");
+  //this use State tracks the id which can not be edited (null)
+  const [editId, setEditId] = useState(null);
+  //this useState holds temp text while editing
+  const [editText, setEditText] = useState("");
 
 
 
@@ -61,15 +61,17 @@ const [editText, setEditText] = useState("");
 
   return (
     <>
-    <h1> Todo List</h1>
-    <AddInput newTodo={newTodo} setNewTodo={setNewTodo} dispatch={dispatch}/>
-    <ul>
-      
-    </ul>
-    
-    <TodoItems key={todos.id}todo={todos} editId={editId} editText={editText} setEditId={setEditId} setEditText={setEditText} dispatch={dispatch}/>
+      <h1> Todo List</h1>
+      <AddInput newTodo={newTodo} setNewTodo={setNewTodo} dispatch={dispatch} />
+      <ul>
+        {todos.map(todo => (
+          <TodoItems key={todo.id} todo={todo} editId={editId} editText={editText} setEditId={setEditId} setEditText={setEditText} dispatch={dispatch} />
+        ))}
+      </ul>
 
-      
+
+
+
     </>
   )
 }
