@@ -1,7 +1,6 @@
 import './App.css'
 import {useState, useReducer} from 'react'
-import Header from './components/Header'
-import Form from './components/Form'
+
 
 //Define the todoList
 const initialList = [
@@ -60,9 +59,66 @@ const [editText, setEditText] = useState("");
 
   return (
     <>
+    <h1> Todo List</h1>
+    
       
     </>
   )
 }
 
 export default App
+
+
+
+// {/* <div>
+// <h1>Todo List</h1>
+
+// {/* Add New Todo */}
+// <input
+//     type="text"
+//     value={newTodo}
+//     onChange={(e) => setNewTodo(e.target.value)}
+// />
+// <button onClick={() => {
+//     dispatch({ type: "Add", payload: newTodo });
+//     setNewTodo("");
+// }}>Add Todo</button>
+
+// <ul>
+//     {todos.map(todo => (
+//         <li key={todo.id} style={{listStyle:'none'}}>
+//             {editId === todo.id ? (
+//                 <>
+//                     <input
+//                         type="text"
+//                         value={editText}
+//                         onChange={(e) => setEditText(e.target.value)}
+//                     />
+//                     <button onClick={() => {
+//                         dispatch({ type: "Edit", payload: { id: todo.id, task: editText } });
+//                         setEditId(null);
+//                         setEditText("");
+//                     }}>Save</button>
+//                 </>
+//             ) :
+//             (
+//                 <>
+//                     <input
+//                         type="checkbox"
+//                         checked={todo.completed}
+//                         onChange={() => dispatch({ type: "Toggle", payload: todo.id })}
+//                     />
+//                     <span>{todo.task}</span>
+//                     <button onClick={() => {
+//                         setEditId(todo.id);
+//                         setEditText(todo.task);
+//                     }}>Edit</button>
+//                     <button onClick={() => dispatch({ type: "Delete", payload: todo.id })} disabled={!todo.completed}>
+//                         Delete
+//                     </button>
+//                 </>
+//             )}
+//         </li>
+//     ))}
+// </ul>
+// </div> */}
