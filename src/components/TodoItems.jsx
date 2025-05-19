@@ -4,7 +4,7 @@ export default function TodoItems({ todo, editId, editText, setEditId, setEditTe
         <>
             <li style={{ listStyle: "none" }}>
                 <input type="checkbox" checked={todo.completed} onChange={() => dispatch({ type: "Toggle", payload: todo.id })} />
-
+                <span>{todo.task}</span>
                 <input text="text" value={editText} onChange={(e) => setEditText(e.target.value)} />
 
                 <button onClick={() => {
@@ -12,13 +12,13 @@ export default function TodoItems({ todo, editId, editText, setEditId, setEditTe
                     setEditId(null)
                     setEditText("")
                 }}>Save</button>
-
+               
 
                 <button onClick={() => {
                     setEditId(todo.id)
                     setEditText(todo.task)
                 }}>Edit</button>
-                
+
                 <button onClick={() => dispatch({ type: "Delete", payload: todo.id })}>Delete</button>
             </li>
 
